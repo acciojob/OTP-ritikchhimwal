@@ -19,8 +19,6 @@ inputs.forEach((input, index) => {
     }
   });
 
-  input.addEventListener('focus', () => {
-    // Clear the value of the input when focused
-    input.value = '';
+  input.focus();
   });
 });
