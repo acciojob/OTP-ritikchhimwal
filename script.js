@@ -19,6 +19,6 @@ inputs.forEach((input, index) => {
     }
   });
 
-  input.focus();
+  inputs.focus();
   });
 });
