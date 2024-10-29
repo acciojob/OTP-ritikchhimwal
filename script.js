@@ -1,24 +1,31 @@
-// Select all input elements with the class "code"
-const inputs = document.querySelectorAll('.code');
 
-// Loop through each input to add event listeners
-inputs.forEach((input, index) => {
-  input.addEventListener('input', () => {
-    // If a digit is typed, move to the next input if available
-    if (input.value && index < inputs.length - 1) {
-      inputs[index + 1].focus();
-    }
-  });
+const first_input = document.querySelector('.code');
+first_input.focus();
 
-  input.addEventListener('keydown', (event) => {
-    if (event.key === "Backspace") {
-      // If backspace is pressed and the input is empty, move focus to the previous input
-      if (!input.value && index > 0) {
-        inputs[index - 1].focus();
-      }
-    }
-  });
 
-  inputs.focus();
-  });
+const allInputs = document.querySelectorAll('.code');
+allInputs.forEach((input) => {
+	input.addEventListener('input', (e) => {
+		const target = e.target;
+		const val = target.value;
+		if (val != "") {
+	        const next = target.nextElementSibling;
+	        if (next) {
+	            next.focus();
+	        }
+	    }
+	});
 });
+
+allInputs.forEach((input) => {
+	input.addEventListener('keyup', (e) => {
+		const target = e.target;
+		const key = e.key.toLowerCase();
+		if(key == 'backspace' || key == 'delete') {
+			const pre = target.previousElementSibling;
+			if(pre) {
+				pre.focus();
+			}
+		}
+	})
+})
